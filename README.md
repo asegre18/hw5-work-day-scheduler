@@ -23,4 +23,4 @@ GitHub Repo:
 https://github.com/asegre18/hw5-work-day-scheduler
 
 Screenshot of Website:
-![screenshot](./Assets/hw5-screenshot.png)
+![screenshot](./Assets/hw5-Screenshot.png)
