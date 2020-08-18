@@ -3,6 +3,8 @@ body {
   font-size: 16px;
   line-height: 1;
 }
+  background-color: lavenderblush;
+}
 
 textarea{
   background: transparent;
@@ -17,7 +19,8 @@ textarea{
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: violet;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
@@ -93,6 +96,6 @@ padding-left: none !important;
   pointer-events: none;
 }
 
-.container {
+/* .container {
   /* display: flex; */
-}
+} */

@@ -23,8 +23,9 @@ $(document).ready(function () {
         // second column is textarea with class time-block
         // third col is the saveBtn with <i> add icon from fontawesome.com
         // $("<i class='far fa-save fa-2x save-icon''></i>");
-        const $row = $(`<div class="row time-block" current-time="${i}">
-        
+        // const $row = $(`<div class="row time-block" current-time="${i}">
+        $(".container").append($(`
+        <div class="row time-block" current-time="${i}">
         <div class="col-sm-1 hour">
         <p>${moment({i}).format("h a")}</p>
         </div>
@@ -38,8 +39,9 @@ $(document).ready(function () {
             <button class="col-sm-1 saveBtn justify-center d-flex align-center">
                     <i class="far fa-save fa-2x save-icon"></i>
                   </button>
-        </div>`);
-        $(".container").append($row);
+        </div>`));
+        console.log(i);
+        // $(".container").append($row);
     }
 
     // console.log(clock);
@@ -60,7 +62,7 @@ $(document).ready(function () {
     });
 
     // clear local storage at the start of the day
-    if (clock === 0) {
+    if (clock === 0 && clock > 9) {
         localStorage.clear();
     }
 
