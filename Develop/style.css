@@ -3,8 +3,6 @@ body {
   font-size: 16px;
   line-height: 1;
 }
-  background-color: lavenderblush;
-}
 
 textarea{
   background: transparent;
@@ -94,7 +92,3 @@ padding-left: none !important;
   cursor: not-allowed;
   pointer-events: none;
 }
-
-/* .container {
-  /* display: flex; */
-} */
