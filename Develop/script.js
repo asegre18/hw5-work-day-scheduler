@@ -1,19 +1,21 @@
 $(document).ready(function () {
     // variables
     let takenTimes = [];
+    // create object that pulls saved calendar events form local storage
+    let availableTimes = {};
+    let clock = moment().hour();
     // // function using moment to set up the timeTable
     function todaysDate() {
         let dateToday = moment().format('MMMM Do YYYY');
         $("#currentDay").html(dateToday);
     }
     todaysDate();
-
-    let clock = moment().hour();
     // function currentTime() {
     //     let clock = moment().hour();
     //     console.log(clock);
     // }
     // currentTime();
+    // console.log(clock);
     // to set hour in moment - moment().hour(Number);
     //append textareas for each row of the schedule
     for (let i = 9; i < 18; i++) {
@@ -27,7 +29,7 @@ $(document).ready(function () {
         $(".container").append($(`
         <div class="row time-block" current-time="${i}">
         <div class="col-sm-1 hour">
-        <p>${moment({i}).format("h a")}</p>
+        <p>${moment({ hour: i }).format("h a")}</p>
         </div>
 
         <div class="col-sm-10">
@@ -40,10 +42,9 @@ $(document).ready(function () {
                     <i class="far fa-save fa-2x save-icon"></i>
                   </button>
         </div>`));
-        console.log(i);
+        // console.log(i);
         // $(".container").append($row);
     }
-
     // console.log(clock);
     // based off the current time check for past, present & future
     $.each($(".time-block"), function (index, value) {
@@ -60,15 +61,10 @@ $(document).ready(function () {
             $(this).find(".saveBtn").addClass("disabled").attr("disabled", true);
         }
     });
-
     // clear local storage at the start of the day
-    if (clock === 0 && clock > 9) {
+    if (clock > 18) {
         localStorage.clear();
     }
-
-    // creat object that pulls saved calendar events form local storage
-    let availableTimes = {};
-
     if (localStorage.getItem("availableTimes")) {
         availableTimes = JSON.parse(localStorage.getItem("availableTimes"));
     }
@@ -114,10 +110,10 @@ $(document).ready(function () {
     }
     // console.log(availableTimes[16].value);
     // set the user input to the correct objects value
-    $(".time-block").each(function() {
+    $(".time-block").each(function () {
         $(this).find(".text-area").val(availableTimes[$(this).attr("current-time")].value);
-      });
-// save to local storage, set the availableTimes time and value only when the saveBtn is clicked
+    });
+    // save to local storage, set the availableTimes time and value only when the saveBtn is clicked
     $('.saveBtn').on('click', function (event) {
         event.preventDefault();
         let availableTimesTime = $(this).closest(".time-block").attr("current-time");
@@ -125,7 +121,6 @@ $(document).ready(function () {
         availableTimes[availableTimesTime].value = availableTimesValue;
         localStorage.setItem("availableTimes", JSON.stringify(availableTimes));
     });
-
     // notes:
 
     // when save button is clicked, need to know which textarea to grab the value from
@@ -143,5 +138,4 @@ $(document).ready(function () {
 
     // function that creates event and adds them to timeblock and local storage only when save button is clicked
     // this is where we need to target the specific button that was clicked and find the time-block accordingly
-
 });
